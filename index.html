@@ -1,85 +1,580 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Command | Your Financial Operating System</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-scene" aria-hidden="true">
+      <div class="bg-gradient-wash"></div>
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow-a" data-bg-orb></div>
+      <div class="bg-glow bg-glow-b" data-bg-orb></div>
+      <div class="bg-glow bg-glow-c" data-bg-orb></div>
+      <div class="bg-noise"></div>
+      <div class="bg-particles" id="bgParticles"></div>
+    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command | The Future of Money</title>
-    <meta name="description" content="Command is makes your money work for you, to its full potential.">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
-        rel="stylesheet">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
     <header class="navbar">
-        <div class="logo">
-            <span class="logo-icon">▲</span> Command
+      <div class="brand">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5l-10 14M22 12H2M19 19L5 5"/></svg>
+          Command
         </div>
-        <nav class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#about">About</a>
-        </nav>
-        <a href="#waitlist" class="btn-primary">Join Waitlist</a>
-    </header>
+        <div class="nav-center">
+          <a href="#dashboardSection">Dashboard</a>
+          <span class="divider"></span>
+          <a href="#modulesSection">Tools</a>
+          <span class="divider"></span>
+          <a href="#securitySection">Security</a>
+          <span class="divider"></span>
+          <a href="#ctaSection">Access</a>
+        </div>
+        <button id="navSignupBtn" class="nav-btn-dark">Join Waitlist</button>
+      </header>
 
-    <main>
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <h1>Command</h1>
-                <h1>Everything</h1>
-                <h1>Money</h1>
-                <p>Make your money work for you, to its full potential.</p>
-                <form class="waitlist-form" id="waitlist" action="#" method="POST"
-                    onsubmit="event.preventDefault(); alert('Waitlist submission joined successfully!');">
-                    <input type="email" placeholder="Enter your email" required aria-label="Email Address">
-                    <button type="submit" class="btn-primary">Request Access</button>
-                </form>
-            </div>
-            <div class="hero-visual">
-                <div class="glass-card">
-                    <div class="glow"></div>
-                    <div class="card-content">
-                        <div class="card-line"></div>
-                        <div class="card-line short"></div>
-                        <div class="circle"></div>
+      <main class="container">
+        <!-- Landing View -->
+        <div id="landing-container" class="landing-layout active">
+          
+          <section class="hero-text hero-banner-card" id="heroText" aria-label="Command hero banner">
+
+            <div class="hero-banner-grid">
+              <div class="hero-copy-col">
+                <p class="hero-kicker">AI-First Personal Finance Agent</p>
+                <h1 class="hero-lockup">
+                  <span class="hero-line hero-line-top"><span id="take-text">Take</span></span>
+                  <span class="hero-line hero-line-mid">
+                    <span class="logo-box" id="hero-logo">
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5l-10 14M22 12H2M19 19L5 5"/></svg>
+                    </span>
+                    <span id="cmd-text">Command</span>
+                  </span>
+                  <span class="hero-line hero-line-bottom">of every rupee.</span>
+                </h1>
+                <p class="hero-subtitle"><span class="hero-subtitle-short">Connect your money stack once. Command finds the leak before it costs you.</span><span class="hero-subtitle-full">Connect your money stack once. Command keeps watch, drafts the smartest next move, and hands you a clean approval queue before the leak becomes a problem.</span></p>
+                <div class="hero-cta-row">
+                  <button id="heroSignupBtn" class="btn-black-pill hero-signup-btn">Join Early Access</button>
+                  <a href="#modulesSection" class="hero-ghost-btn">Explore Modules</a>
+                </div>
+
+              </div>
+
+              <div class="hero-visual-shell" aria-label="Live command simulation">
+                <div class="hero-console-card">
+                  <div class="hero-console-head">
+                    <span class="console-title"><span class="live-dot" aria-hidden="true"></span>Agent Running</span>
+                    <span id="heroConsoleState" class="hero-console-state">Working while you sleep</span>
+                  </div>
+
+                  <div class="hero-console-steps">
+                    <div class="step-dot is-active" data-step="0"><span class="step-dot-inner"></span></div>
+                    <div class="step-connector"></div>
+                    <div class="step-dot" data-step="1"><span class="step-dot-inner"></span></div>
+                    <div class="step-connector"></div>
+                    <div class="step-dot" data-step="2"><span class="step-dot-inner"></span></div>
+                    <div class="step-connector"></div>
+                    <div class="step-dot" data-step="3"><span class="step-dot-inner"></span></div>
+                    <div class="step-connector"></div>
+                    <div class="step-dot" data-step="4"><span class="step-dot-inner"></span></div>
+                  </div>
+                  <p id="heroStepLabel" class="hero-step-label">Syncing AA feeds</p>
+
+                  <div class="hero-savings-block">
+                    <span class="savings-label">Saved</span>
+                    <span id="heroSavingsAmount" class="savings-value">Rs 0</span>
+                    <div class="savings-bar"><div id="heroSavingsFill" class="savings-bar-fill"></div></div>
+                  </div>
+
+                  <div class="hero-actions-feed" aria-label="Actions queued for review">
+                    <p class="actions-feed-title">Queued for your review</p>
+                    <div class="action-card-item"><span class="action-card-dot" aria-hidden="true"></span><span class="action-card-copy">Shift idle cash to high-yield bucket</span></div>
+                    <div class="action-card-item"><span class="action-card-dot" aria-hidden="true"></span><span class="action-card-copy">Close health cover gap before renewal</span></div>
+                    <div class="action-card-item"><span class="action-card-dot" aria-hidden="true"></span><span class="action-card-copy">Rebalance SIP to target allocation</span></div>
+                    <div class="action-card-item"><span class="action-card-dot" aria-hidden="true"></span><span class="action-card-copy">Queue tax-loss offset actions</span></div>
+                  </div>
+
+                  <div class="hero-console-footer" aria-label="Live system detail">
+                    <div>
+                      <span class="console-footer-label">Coverage</span>
+                      <strong>12 linked surfaces</strong>
                     </div>
+                    <div>
+                      <span class="console-footer-label">Next run</span>
+                      <strong>06:00 IST sweep</strong>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
+          </section>
 
-        <section class="features" id="features">
-            <h2>Built differently</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Unmatched Speed</h3>
-                    <p>Execute financial maneuvers at the speed of thought. No loading screens, no delays.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Total Clarity</h3>
-                    <p>Beautiful, actionable insights replacing scattered spreadsheets and fragmented data.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Absolute Control</h3>
-                    <p>You set the rules. Intelligent automations work continuously on your behalf.</p>
-                </div>
+          <section class="secondary-hero" id="valueStripSection" aria-label="Why Command matters" data-reveal="value-strip">
+            <div class="secondary-hero-inner">
+              <div class="secondary-hero-block cost-block">
+                <span class="secondary-hero-label">Cost of Doing Nothing</span>
+                <span class="secondary-hero-value">Rs 1,24,000<span class="secondary-hero-unit"> / year</span></span>
+                <p class="secondary-hero-desc">Missed tax deductions, idle cash, and unclaimed rewards silently drain your wealth every year.</p>
+              </div>
+              <div class="secondary-hero-divider" aria-hidden="true"></div>
+              <div class="secondary-hero-block promise-block">
+                <span class="secondary-hero-label">Core Promise</span>
+                <span class="secondary-hero-value">Save from Day 1</span>
+                <p class="secondary-hero-desc">Command finds money you're leaving on the table — and queues real actions before you even wake up.</p>
+              </div>
             </div>
-        </section>
-    </main>
+          </section>
 
-    <footer class="footer">
-        <p>&copy; 2026 Command. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy policy</a>
-            <a href="#">Terms of service</a>
-            <a href="#">X</a>
+
+
+          <!-- Tools Section -->
+          <div class="tools-section" id="modulesSection" data-reveal="modules">
+            <div class="tools-header">
+              <h2>Command Modules</h2>
+              <p>Flip a module to preview what Command finds, then approve the best next move.</p>
+            </div>
+            
+            <div class="tools-grid">
+              <!-- Card 1: Motor Insurance -->
+              <div class="flip-card shadow-solid">
+                <div class="flip-card-inner">
+                  <div class="flip-card-back bg-green flip-back-lite">
+                    <h4 class="back-title">3 high-risk exclusions flagged</h4>
+                    <div class="card-anim-scan">
+                      <div class="scan-row">
+                        <span class="scan-id">§14.2b</span>
+                        <span class="scan-text">Engine water damage excluded</span>
+                        <span class="scan-badge risk">RISK</span>
+                      </div>
+                      <div class="scan-row">
+                        <span class="scan-id">§9.1c</span>
+                        <span class="scan-text">Consumables not covered</span>
+                        <span class="scan-badge risk">RISK</span>
+                      </div>
+                      <div class="scan-row">
+                        <span class="scan-id">§22.4</span>
+                        <span class="scan-text">RTI requires add-on rider</span>
+                        <span class="scan-badge warn">WARN</span>
+                      </div>
+                    </div>
+                    <button type="button" class="back-cta">Scan Full Policy <span class="arrow-circle">➔</span></button>
+                  </div>
+                  <div class="flip-card-front flip-panel poster-front pastel-mint">
+                    <div class="front-pill-row">
+                      <span class="flip-panel-tag">Insurance Intel</span>
+                      <span class="front-metric-pill">3 blockers</span>
+                    </div>
+                    <h3 class="flip-panel-title poster-title-lines">
+                      <span>Expose</span>
+                      <span>The Fine</span>
+                      <span>Print.</span>
+                    </h3>
+                    <p class="flip-panel-desc">Upload a policy and surface the exact clauses that can break claims.</p>
+                    <button id="chooseFileBtn" class="btn-black-pill card-cta-btn">Scan Policy ↗</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2: Credit Cards -->
+              <div class="flip-card shadow-solid">
+                <div class="flip-card-inner">
+                  <div class="flip-card-back bg-yellow flip-back-lite">
+                    <h4 class="back-title">Rs 4.2k leaking each month</h4>
+                    <div class="card-anim-bars">
+                      <div class="bar-row">
+                        <span class="bar-label">Travel</span>
+                        <div class="bar-track"><div class="bar-fill" data-w="78"></div></div>
+                        <span class="bar-gain">+₹2.1k</span>
+                      </div>
+                      <div class="bar-row">
+                        <span class="bar-label">Fuel</span>
+                        <div class="bar-track"><div class="bar-fill" data-w="52"></div></div>
+                        <span class="bar-gain">+₹840</span>
+                      </div>
+                      <div class="bar-row">
+                        <span class="bar-label">Dining</span>
+                        <div class="bar-track"><div class="bar-fill" data-w="88"></div></div>
+                        <span class="bar-gain">+₹1.3k</span>
+                      </div>
+                    </div>
+                    <button type="button" class="back-cta">Build Card Strategy <span class="arrow-circle">➔</span></button>
+                  </div>
+                  <div class="flip-card-front flip-panel poster-front pastel-peach">
+                    <div class="front-pill-row">
+                      <span class="flip-panel-tag">Card Optimizer</span>
+                      <span class="front-metric-pill">3x reward lift</span>
+                    </div>
+                    <h3 class="flip-panel-title poster-title-lines">
+                      <span>Max Out</span>
+                      <span>Your</span>
+                      <span>Rewards.</span>
+                    </h3>
+                    <p class="flip-panel-desc">Route each spend category to the best card mix in under a minute.</p>
+                    <button id="ccOptimizeBtn" class="btn-black-pill card-cta-btn">Optimize Rewards ↗</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3: Wallet Feature -->
+              <div class="flip-card shadow-solid">
+                <div class="flip-card-inner">
+                  <div class="flip-card-back bg-blue flip-back-lite">
+                    <h4 class="back-title">One live view across all assets</h4>
+                    <div class="card-anim-sync">
+                      <div class="sync-row">
+                        <div class="sync-dot"></div>
+                        <div class="sync-info">
+                          <span class="sync-name">HDFC Savings</span>
+                          <span class="sync-amount">₹2,40,000</span>
+                        </div>
+                        <span class="sync-tick">✓</span>
+                      </div>
+                      <div class="sync-row">
+                        <div class="sync-dot"></div>
+                        <div class="sync-info">
+                          <span class="sync-name">Axis MF Portfolio</span>
+                          <span class="sync-amount">₹11,20,000</span>
+                        </div>
+                        <span class="sync-tick">✓</span>
+                      </div>
+                      <div class="sync-row">
+                        <div class="sync-dot"></div>
+                        <div class="sync-info">
+                          <span class="sync-name">EPF Balance</span>
+                          <span class="sync-amount">₹4,85,000</span>
+                        </div>
+                        <span class="sync-tick">✓</span>
+                      </div>
+                    </div>
+                    <button type="button" id="walletSignupBackBtn" class="back-cta">Sign Up for Access <span class="arrow-circle">➔</span></button>
+                  </div>
+                  <div class="flip-card-front flip-panel poster-front pastel-sky">
+                    <div class="front-pill-row">
+                      <span class="flip-panel-tag">Wealth Command</span>
+                      <span class="front-metric-pill">Drift alerts</span>
+                    </div>
+                    <h3 class="flip-panel-title poster-title-lines">
+                      <span>Kill The</span>
+                      <span>Spread</span>
+                      <span>Sheets.</span>
+                    </h3>
+                    <p class="flip-panel-desc">Sync once to monitor net worth, allocation drift and liquidity in one place.</p>
+                    <button id="walletSignupFrontBtn" class="btn-black-pill card-cta-btn">Sign Up ↗</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="tools-swipe-hint" aria-hidden="true">swipe to explore modules</p>
+          </div>
+
+          <section class="copilot-section" id="securitySection" aria-label="Co-pilot approach" data-reveal="security">
+            <div class="section-heading copilot-heading">
+              <span class="section-eyebrow">Co-pilot, not advisor</span>
+              <h2>You control every decision.<br>We just make sure you never make one blind.</h2>
+            </div>
+
+            <div class="copilot-grid">
+              <div class="copilot-card" data-index="01">
+                <h3>You approve.<br>We prepare.</h3>
+                <p>Every move lands as a draft — with full context — and waits for your go.</p>
+              </div>
+              <div class="copilot-card" data-index="02">
+                <h3>We catch drift.<br>You set direction.</h3>
+                <p>Idle cash. Coverage gaps. Routing leaks. Spotted before they compound.</p>
+              </div>
+              <div class="copilot-card" data-index="03">
+                <h3>No unsolicited<br>moves. Ever.</h3>
+                <p>We don't send emails or move money. Your approval is the only trigger.</p>
+              </div>
+              <div class="copilot-card" data-index="04">
+                <h3>Actions, not<br>dashboards.</h3>
+                <p>Not data to interpret. A proposed next move — ready to approve in one tap.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="reviews-section" aria-label="Alpha user stories" data-reveal="testimonials">
+            <div class="reviews-layout">
+              <div class="reviews-label">
+                <span class="section-eyebrow">Early access</span>
+                <p class="reviews-tagline">Real people.<br>Real money found.</p>
+              </div>
+              <div class="reviews-ticker-wrap" aria-live="polite" aria-atomic="true">
+                <div class="review-item" style="--delay:0s">
+                  <blockquote>Found ₹18k in card rewards I was missing every month. Took me 3 minutes.</blockquote>
+                  <footer><strong>Rohan M.</strong><span>Bengaluru · used weekly</span></footer>
+                </div>
+                <div class="review-item" style="--delay:3.5s">
+                  <blockquote>My health policy had a monsoon exclusion I never knew about. Command caught it before renewal.</blockquote>
+                  <footer><strong>Priya S.</strong><span>Mumbai · before every renewal</span></footer>
+                </div>
+                <div class="review-item" style="--delay:7s">
+                  <blockquote>I deleted three finance apps after this. One view, one queue, done.</blockquote>
+                  <footer><strong>Aditya K.</strong><span>Delhi · daily active</span></footer>
+                </div>
+                <div class="review-item" style="--delay:10.5s">
+                  <blockquote>It flagged ₹6.8L sitting idle earning nothing. I had no idea. Now it's working.</blockquote>
+                  <footer><strong>Sneha R.</strong><span>Hyderabad · referred 4 friends</span></footer>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="trust-tail-section" id="trustTailSection" aria-label="Command principles" data-reveal="trust-tail">
+            <div class="trust-marquee" aria-label="Trust indicators">
+              <div class="trust-track">
+                <span class="trust-pill">AI-first architecture</span>
+                <span class="trust-pill">Tax + Insurance + Investments</span>
+                <span class="trust-pill">Action drafts in minutes</span>
+                <span class="trust-pill">Customer-first optimization</span>
+                <span class="trust-pill">Human approval before execution</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="cta-section" id="ctaSection" aria-label="Join early access" data-reveal="cta">
+            <div class="cta-shell">
+              <div class="cta-copy">
+                <span class="section-eyebrow">Early access</span>
+                <h2>Make your money stack feel piloted.</h2>
+                <p>Join the waitlist to get access to the first Command workflows.</p>
+              </div>
+              <div class="cta-actions">
+                <button id="ctaSignupBtn" class="btn-black-pill cta-primary-btn">Request Access</button>
+                <p class="cta-note">Private rollout. Human-reviewed onboarding.</p>
+              </div>
+            </div>
+          </section>
+
+          <input type="file" id="policyFile" accept=".pdf,application/pdf" hidden />
         </div>
-    </footer>
-</body>
 
+        <!-- File Upload Confirmation Step -->
+        <section id="step-upload" class="step hidden">
+          <div class="processing-wrap">
+            <div class="processing-header">
+              <h2>File Ready</h2>
+              <p class="sub-text">Confirm policy analysis.</p>
+            </div>
+            <div class="metric-card shadow-solid text-center upload-card">
+               <h3 id="fileName" class="file-title">No File Selected</h3>
+               <button id="analyzeBtn" class="btn-execute hidden">Run Swarm Audit</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 2: Processing (Simplified to match this sharp look) -->
+        <section id="step-processing" class="step hidden">
+          <div class="processing-wrap">
+            <div class="processing-header">
+              <h2>Analyzing</h2>
+              <p class="sub-text">Scanning coverage vectors.</p>
+            </div>
+            
+            <div class="agent-list">
+              <div class="agent-row" id="agent-ingest">
+                <div class="status-indicator"><div class="dot loader"></div></div>
+                <div class="agent-info">
+                  <h4>Parsing Document</h4>
+                  <p class="agent-msg">Extracting syntax...</p>
+                </div>
+              </div>
+              <div class="agent-row" id="agent-clause">
+                <div class="status-indicator"><div class="dot loader"></div></div>
+                <div class="agent-info">
+                  <h4>Reviewing Clauses</h4>
+                  <p class="agent-msg">Checking edge cases...</p>
+                </div>
+              </div>
+              <div class="agent-row" id="agent-sim">
+                <div class="status-indicator"><div class="dot loader"></div></div>
+                <div class="agent-info">
+                  <h4>Simulating Risk</h4>
+                  <p class="agent-msg">Calculating impact...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 3: Results -->
+        <section id="step-results" class="step hidden">
+          <div class="results-header">
+            <h2>Audit Complete</h2>
+            <p class="sub-text">Your exact risk exposure.</p>
+          </div>
+
+          <div class="results-layout">
+            <div class="results-col-left">
+              <div class="metric-card shadow-solid">
+                <p class="metric-label">Shock Score</p>
+                <div class="score-row">
+                  <h2 id="shockScore">--</h2>
+                  <span class="score-max">/100</span>
+                </div>
+                <div class="progress-bar"><div id="shockProgress" class="progress-fill"></div></div>
+              </div>
+
+              <div class="insights-grid">
+                <div class="insight-card shadow-solid">
+                  <div class="card-title-row">
+                    <div class="circle-icon danger"></div>
+                    <h3>Exclusions</h3>
+                  </div>
+                  <ul id="finePrintList" class="insight-list"></ul>
+                </div>
+                <div class="insight-card shadow-solid">
+                  <div class="card-title-row">
+                    <div class="circle-icon success"></div>
+                    <h3>Required Fixes</h3>
+                  </div>
+                  <ul id="fixList" class="insight-list action-list"></ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="results-col-right" id="scenarios-container">
+              <div class="scenario-card shadow-solid">
+                <div class="scenario-header">
+                  <h3>Scenario 1: Frontal Collision</h3>
+                  <span class="badge warning">Moderate Impact</span>
+                </div>
+                <div class="cost-breakdown">
+                  <div class="cost-row"><span>Repair Estimate</span><span>₹85,000</span></div>
+                  <div class="cost-row danger"><span>Plastics Excluded</span><span>-₹12,500</span></div>
+                  <div class="cost-row danger"><span>Age Depreciation</span><span>-₹12,000</span></div>
+                  <div class="cost-divider"></div>
+                  <div class="cost-row total"><span>Out of Pocket</span><h2 id="oopScore">--</h2></div>
+                </div>
+              </div>
+
+              <div class="scenario-card shadow-solid">
+                <div class="scenario-header">
+                  <h3>Scenario 2: Water Logging</h3>
+                  <span class="badge danger">Engine Failure</span>
+                </div>
+                <div class="cost-breakdown">
+                  <div class="cost-row"><span>Engine Replacement</span><span>₹12,00,000</span></div>
+                  <div class="cost-row danger"><span>Hydrostatic Lock Excluded</span><span id="hydroExcluded">-₹12,00,000</span></div>
+                  <div class="cost-divider"></div>
+                  <div class="cost-row total"><span>Out of Pocket</span><h2 id="oopScore2">--</h2></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="action-footer">
+             <button id="resetBtn" class="btn-execute">New Audit</button>
+          </div>
+        </section>
+
+        <!-- Credit Card Flow: Upload Statement -->
+        <section id="step-cc-upload" class="step hidden">
+          <div class="processing-wrap">
+            <div class="processing-header">
+              <h2>Upload Statement</h2>
+              <p class="sub-text">Give us your credit card PDF statement.</p>
+            </div>
+            <div class="metric-card shadow-solid text-center upload-card">
+               <h3 id="ccFileName" class="file-title">No Statement Selected</h3>
+               <button id="chooseCcFileBtn" class="btn-black-pill upload-select-btn">Browse PDF</button>
+               <input type="file" id="ccPolicyFile" accept=".pdf,application/pdf" hidden />
+               <button id="simulatePlaidBtn" class="btn-execute hidden upload-analyze-btn">Analyze Statement</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step CC 2: Processing -->
+        <section id="step-cc-processing" class="step hidden">
+          <div class="processing-wrap">
+            <div class="processing-header">
+              <h2>Running Optimizer</h2>
+              <p class="sub-text">Mapping your habits to 840+ credit cards.</p>
+            </div>
+            
+            <div class="agent-list">
+              <div class="agent-row" id="cc-agent-ingest">
+                <div class="status-indicator"><div class="dot loader"></div></div>
+                <div class="agent-info">
+                  <h4>Categorizing Spends</h4>
+                  <p class="agent-msg">Tagging merchants...</p>
+                </div>
+              </div>
+              <div class="agent-row" id="cc-agent-clause">
+                <div class="status-indicator"><div class="dot loader"></div></div>
+                <div class="agent-info">
+                  <h4>Simulating Portfolio</h4>
+                  <p class="agent-msg">Running reward permutations...</p>
+                </div>
+              </div>
+              <div class="agent-row" id="cc-agent-sim">
+                <div class="status-indicator"><div class="dot loader"></div></div>
+                <div class="agent-info">
+                  <h4>Finalizing Combinations</h4>
+                  <p class="agent-msg">Calculating net value...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step CC 3: Results -->
+        <section id="step-cc-results" class="step hidden">
+          <div class="results-header">
+            <h2>Optimal Stack Found</h2>
+            <p class="sub-text">Stop leaving money on the table.</p>
+          </div>
+
+          <div class="results-layout">
+            <div class="results-col-left">
+              <div class="metric-card shadow-solid">
+                <p class="metric-label">Lost Annual Value</p>
+                <div class="score-row">
+                  <h2>₹1,84,000</h2>
+                  <span class="score-max score-max-year">/ year</span>
+                </div>
+              </div>
+
+              <div class="insights-grid">
+                <div class="insight-card shadow-solid">
+                  <div class="card-title-row">
+                    <div class="circle-icon success"></div>
+                    <h3>Top Spending Categories</h3>
+                  </div>
+                  <ul class="insight-list action-list">
+                    <li>Dining & Delivery: <strong>₹8.2L/yr</strong></li>
+                    <li>Travel: <strong>₹4.5L/yr</strong></li>
+                    <li>Groceries: <strong>₹6.1L/yr</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="results-col-right" id="cc-scenarios-container">
+              <div class="scenario-card shadow-solid highlighted-scenario">
+                <div class="scenario-header">
+                  <h3>Recommended Playbook</h3>
+                  <span class="badge warning invert">High Priority</span>
+                </div>
+                <div class="cost-breakdown">
+                  <div class="cost-row"><span class="cost-row-title">1. Amex Gold</span><span>Net +₹65,000/yr</span></div>
+                  <p class="cost-note">Moves dining from 1x to 4x points.</p>
+                  <div class="cost-row"><span class="cost-row-title">2. Capital One Savor</span><span>Net +₹34,000/yr</span></div>
+                  <p class="cost-note">Optimizes grocery spend.</p>
+                  <div class="cost-divider"></div>
+                  <div class="cost-row total"><span>Total Gained / Yr</span><h2>₹99,000</h2></div>
+                  <button class="btn-execute full-width-btn" onclick="location.reload()">Return Home</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@motionone/dom/dist/motion-one.min.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
